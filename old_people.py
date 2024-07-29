@@ -7,7 +7,7 @@ Usage:
  python old_people.py
 """
 import os
-from create_db import db_path, script_dir
+from create_db import script_dir
 import sqlite3
 from pprint import pprint
 import pandas as pd
@@ -26,7 +26,7 @@ def get_old_people():
         list: (name, age) of old people 
     """
     # TODO: Create function body
-    con = sqlite3.connect('social_network.db')  #coneccion a la base de datos, igual que el otro programa
+    con = sqlite3.connect('social_network.db')
     cur = con.cursor()
     
     # Query the database for all information for all people where age <=50 years old
@@ -35,9 +35,7 @@ def get_old_people():
     data = cur.fetchall()  
     
     con.commit()
-    con.close()  
-    print ("People wint age at least 50 years old\n")  
-
+    con.close()   
     # Hint: See example code in lab instructions entitled "Getting People Data from the Database"
     return data
 
@@ -48,8 +46,8 @@ def print_name_and_age(name_and_age_list):
         name_and_age_list (list): (name, age) of people
     """
     # TODO: Create function body
-    for name in name_and_age_list:
-        pprint(name)
+    for person in name_and_age_list:
+        pprint(f"{person[0]} is {person[1]} years old.")
     # Hint: Use a for loop to iterate the list of tuples to print a sentence for each old person
     return
 
